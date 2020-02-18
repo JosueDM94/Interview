@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:vm="clr-namespace:Interview.ViewModels"
+    x:Class="Interview.MainPage"
+    ios:Page.UseSafeArea="True"    
+    mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout
+            Spacing="10"
+            Padding="10,15"
+            Orientation="Vertical"
+            BackgroundColor="White">
+            <Entry
+                FontSize="15"
+                d:Text="Ford"
+                TextColor="Black"
+                WidthRequest="300"
+                Placeholder="Marca"
+                Text="{Binding Marca}"
+                HorizontalOptions="Center"/>
+            <Entry
+                FontSize="15"
+                d:Text="Fiesta"
+                TextColor="Black"                
+                WidthRequest="300"
+                Placeholder="Modelo"
+                Text="{Binding Modelo}"
+                HorizontalOptions="Center"/>
+            <DatePicker
+                FontSize="15"
+                TextColor="Black"
+                WidthRequest="300"
+                d:Date="01/01/2019"
+                Date="{Binding Año}"                
+                HorizontalOptions="Center"/>
+            <Label
+                FontSize="13"
+                TextColor="DarkRed"
+                FontAttributes="Italic"
+                Text="{Binding ErrorMessage}"
+                HorizontalTextAlignment="Center"/>
+            <Button
+                Text="Guardar"
+                FontSize="15"
+                TextColor="Black"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                Command="{Binding SaveCommand}"/>            
+            <ListView
+                ItemsSource="{Binding Cars}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                HorizontalOptions="CenterAndExpand">
+                                <Label
+                                    HorizontalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span
+                                                Text="Marca: "
+                                                FontAttributes="Bold"/>
+                                            <Span
+                                                Text="{Binding Marca}"
+                                                FontAttributes="Italic"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    HorizontalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span
+                                                Text="Modelo: "
+                                                FontAttributes="Bold"/>
+                                            <Span
+                                                Text="{Binding Modelo}"
+                                                FontAttributes="Italic"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    HorizontalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span
+                                                Text="Modelo: "
+                                                FontAttributes="Bold"/>
+                                            <Span
+                                                FontAttributes="Italic"
+                                                Text="{Binding Año, StringFormat='{0:yyyy}'}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
